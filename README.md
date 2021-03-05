@@ -9,7 +9,9 @@ pip install fabric
 pip install fabric2
 ```
 
+To get list of all free GPUs on all nodes:
+
 ```
-Only run run_over_shell.py
+python SchedulerMonitor.py
 ```
 
