@@ -77,6 +77,7 @@ class Scheduler(object):
             self.launch_single_job(host, final)
             completed_jobs += 1
 
+
 def main():
     miniSLURM = Scheduler()
     miniSLURM.ping_avail_gpus()
