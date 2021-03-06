@@ -30,7 +30,7 @@ def main():
     for i in range(len(GPUs)):
         gpu = GPUs[i]
         if gpu.name not in args.card_exception:
-            if (GPU_loads < 20.0) and (GPU_memoryUtil[i] <= 10.0) and (gpu.memoryFree/GB >= args.memory_per_gpu):
+            if (GPU_loads[i] < 10.0) and (GPU_memoryUtil[i] <= 10.0) and (gpu.memoryFree/GB >= args.memory_per_gpu):
                 gpu_IDs.append(i)
     print(gpu_IDs)
 
