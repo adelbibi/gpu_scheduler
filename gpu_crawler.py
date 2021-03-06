@@ -11,11 +11,26 @@ args = parser.parse_args()
 def main():
     GB = 1024
     gpu_IDs = []
+    GPU_loads = {}
+    GPU_memoryUtil = {}
+    GPUs = GPU.getGPUs()
+
+    # compute average utilization over 5 runs
+    for i in range(len(GPUs)):
+        GPU_loads[i] = 0
+        GPU_memoryUtil[i] = 0
+        for j in range(5):
+            GPUs_refresh = GPU.getGPUs()
+            GPU_loads[i] += GPUs_refresh[i].load
+            GPU_memoryUtil[i] += GPUs_refresh[i].memoryUtil
+        GPU_loads[i] = GPU_loads[i]/5 * 100.0
+        GPU_memoryUtil[i] = GPU_memoryUtil[i]/5 * 100.0
+
     GPUs = GPU.getGPUs()
     for i in range(len(GPUs)):
         gpu = GPUs[i]
         if gpu.name not in args.card_exception:
-            if (gpu.load*100.0 < 20.0) and (gpu.memoryUtil*100 <= 10.0) and (gpu.memoryFree/GB >= args.memory_per_gpu):
+            if (GPU_loads[i] < 20.0) and (GPU_memoryUtil[i] <= 10.0) and (gpu.memoryFree/GB >= args.memory_per_gpu):
                 gpu_IDs.append(i)
     print(gpu_IDs)
 
