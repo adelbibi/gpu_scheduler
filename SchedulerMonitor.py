@@ -45,6 +45,7 @@ class Scheduler(object):
         gpu_ID = -1
         while (gpu_ID == -1):
             print('Searching for a single free GPU!')
+            time.sleep(60)
             for host in self.allhosts:
                 c = Connection(host)
                 result = c.run('python gpu_crawler.py --memory_per_gpu 11 --card_exception "Tesla K40m"', hide=True)
