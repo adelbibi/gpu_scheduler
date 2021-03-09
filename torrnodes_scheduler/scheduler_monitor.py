@@ -7,10 +7,10 @@ import argparse
 class GPUScheduler(object):
     def __init__(self):
         # torrnode3 > issues with password
-        # torrnode6 > gpus down
         self.allhosts = [
             "torrnode1", "torrnode2", "torrnode4",
-            "torrnode5", "torrnode7", "torrnode8"
+            "torrnode5", "torrnode6", "torrnode7",
+            "torrnode8"
         ]
 
     @staticmethod
