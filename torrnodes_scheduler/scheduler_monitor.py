@@ -44,7 +44,7 @@ class GPUScheduler(object):
     def _get_crawlwer_list(self, host, min_memory_per_gpu=11):
         c = Connection(host)
         result = c.run(
-            f"gpu_crawler.py --memory_per_gpu {min_memory_per_gpu} --card_exception 'Tesla K40m'",
+            f"python gpu_crawler.py --memory_per_gpu {min_memory_per_gpu} --card_exception 'Tesla K40m'",
             hide=True
         )
         all_IDs = result.stdout.replace("[", "").replace("]","").replace("\n", ""). replace(" ", "")
